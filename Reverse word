@@ -1,0 +1,46 @@
+#include <bits/stdc++.h> 
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+string reverseEachWord(string input){
+    
+    int n=input.size();
+    string ans="";
+    string temp="";
+    int i=0;
+    while(i<=n){
+
+      if(input[i]==' '|| input[i]=='\0'){
+          reverse(temp.begin(),temp.end());
+
+          if(ans.empty()){
+            ans+=temp;
+          }
+
+          else{ 
+             ans+=' ';
+             ans+=temp;
+          }
+          temp="";
+
+      }
+      else{
+        temp+=input[i];
+      }
+      i++;
+
+    }
+    return ans;
+}
+
+int main()
+{
+
+    string str;
+    getline(cin, str);
+    string ans = reverseEachWord(str);
+    cout << ans << endl;
+    ;
+}

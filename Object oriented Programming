@@ -5,8 +5,22 @@ OOP'S CONCEPTS (cpp)
 2. To provide the feature of hiding that is good for security concerns.
 3. To provide ssolutions to real world problems.
 
-I) ACCESS MODIFIRER ; used to asign acess to class members
-public ,private
+I) ACCESS MODIFIRER ; used to asign acess to class members ( To determne which class memebers are accesible to ther classes and functions and which are
+ not)
+1>Public: can be accesed from anywhere inside and ousie the class
+2>Private : only within the class.
+3>Protected: can be accesed within the class and outside the class only through child function.
+
+/***NOTE: DEFAULT ACCESS MODIFIER IS private .****/
+=>CLASS:-
+     Its a logical entity to define a new datatype.
+     A template for an object,  contains variables , methods and functions.
+     syntax:
+        class class_name{
+          //class body
+      };
+
+
 
 // TO BE CONTINUED
 

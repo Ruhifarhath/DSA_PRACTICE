@@ -1,0 +1,148 @@
+METHOD 1: COUNT 0, 1 and 2
+
+ We will count the number of 0s, 1s and 2s in the array/list. 
+Then, we will overwrite the array with the total number of 0s, followed by 1s and 2s, respectively.
+Time Complexity
+O(n), where ‘n’ is the length of the array/list. 
+
+//CODE M1:
+/*
+    Time Complexity : O(N)
+    Space Complexity : O(1)
+
+    where N is the length of the array/list.
+*/
+
+void sortArray(vector<int>& arr, int n)
+{
+    int zero = 0;
+    int one = 0;
+    int two = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == 0)
+        {
+            zero++;
+        }
+        else if (arr[i] == 1)
+        {
+            one++;
+        }
+        else
+        {
+            two++;
+        }
+    }
+
+    int index = 0;
+
+    while (zero--)
+    {
+        arr[index] = 0;
+        index++;
+    }
+
+    while(one--)
+    {
+        arr[index] = 1;
+        index++;
+    }
+
+    while(two--)
+    {
+        arr[index] = 2;
+        index++;
+    }
+}
+
+
+//METHOD 2: THREE-POINTER APPROACH
+
+We can sort the array in one-pass by maintaining three positional pointers ‘zeroPos’, ‘onePos’ and ‘twoPos’ initialised to 0, 0 and n - 1, respectively.
+Here, ‘zeroPos’ represents the first 1 after all 0s, ‘onePos’ represents the current element, and ‘twoPos’ represents the last unexplored element before all 2s.
+
+Now, we iterate through ARR with ‘onePos’-
+If we encounter a 0.
+We will swap arr[zeroPos] and arr[onePos].
+This is because ‘zeroPos’ represents the first 1 after all 0s and we have to ensure that all 0s must come before 1.
+Then increment ‘zeroPos’ and ‘onePos’ by 1.
+Else, If we encounter a 1.
+We will simply increment ‘onePos’ by 1.
+Else, If we encounter a 2.
+We will swap arr[onePos] and arr[twoPos].
+This is because ‘twoPos’ represents the last unexplored element before all 2s and we have to ensure that all 2s must come after 1.
+Then decrement ‘twoPos’ by 1.
+
+Time Complexity
+O(n), where ‘n’ is the length of the array/list. 
+
+ 
+
+We are iterating over the array/list only once. Hence, the time complexity is O(n).
+
+Space Complexity
+O(1) i.e. constant space complexity.
+
+ 
+
+We are using only three-pointers ‘zeroPos’, ‘onePos’ and ‘twoPos’.
+
+
+//CODE:
+
+/*
+    Time Complexity : O(N)
+    Space Complexity : O(1)
+
+    where N is the length of the array/list.
+*/
+
+void sortArray(vector<int>& arr, int n)
+{
+    int zeroPos = 0;
+    int onePos = 0;
+    int twoPos = n-1;
+
+    while (onePos <= twoPos)
+    {
+        if (arr[onePos] == 1)
+        {
+            onePos++;
+        }
+        else if (arr[onePos] == 0)
+        {
+            swap(arr[zeroPos], arr[onePos]);
+            zeroPos++;
+            onePos++;
+        }
+        else
+        {
+            swap(arr[onePos], arr[twoPos]);
+            twoPos--;
+        }
+    }
+}
+
+//**//OPTIMAL SOLUTION  /**/
+
+#include <bits/stdc++.h> 
+void sortArray(vector<int>& arr, int n)
+{
+    // Write your code here
+    int low=0,mid=0,high=n-1;
+    while(mid<=high) {
+        if(arr[mid]==0) {
+            swap(arr[low],arr[mid]);
+            low++;
+            mid++;
+        }
+        else if(arr[mid]==1) {
+            mid++;
+        }
+        else {
+            swap(arr[mid],arr[high]);
+            high--;
+        }
+    }
+}

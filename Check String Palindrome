@@ -1,0 +1,91 @@
+/*
+	Time complexity: O((length(S))
+	Space Complexity: O(1)
+	
+	Where S is the given string. 
+*/
+
+void toLowerCase(string &s)
+{	
+    // Traverse through the string s
+    for (int i = 0; i < s.length(); i++)
+    {
+        char ch = s[i];
+        
+        // Check if ch is a uppercase letter
+        if (ch <= 'Z' && ch >= 'A')
+        {
+            ch = ch - ('A' - 'a');
+            s[i] = ch;
+        }
+    }
+}
+
+bool checkPalindrome(string s)
+{	
+    // Convert uppercase letter into lowercase letter
+    toLowerCase(s);
+
+    int i = 0;
+    int j = s.length() - 1;
+
+    while (i < j)
+    {
+        if (isalnum(s[i]) == 0)
+        {
+            // ith pointer points to invalid character.
+            ++i;
+        }
+        else if (isalnum(s[j]) == 0)
+        {
+            // jth pointer points to invalid character.
+            --j;
+        }
+        else if (s[i] == s[j])
+        {
+            ++i, --j;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+
+
+//MY SOLUTON
+#include <bits/stdc++.h> 
+using namespace std;
+bool checkPalindrome(string s)
+{
+    // Write your code here.
+     string temp;
+     for(int i=0;i<s.size()-1;i++){
+         if((s[i]>='a' && s[i]<='z')||s[i]>='0'&&s[i]<='9')
+         {
+             temp.push_back(s[i]);
+
+         }
+         else if(s[i]>='A' && s[i]<='Z')
+         {
+             temp.push_back(s[i]+32);
+         }
+     }
+    int start=0;
+    int end=temp.size()-1;
+
+    while(start<=end)
+    {
+        if(temp[start]!=temp[end])
+        {
+            return false;
+        }
+        start++;
+        end--;
+
+    }
+    return true;
+}
